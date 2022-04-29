@@ -10,14 +10,21 @@ export const GlobalStyles = createGlobalStyle`
     --background: rgba(137, 171, 245, 0.37);
 }
 
-* > * {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    overflow: hidden;
+}
+
 body {
+    background: ${({theme}) => theme.bg2};
+    color: ${({theme}) => theme.text};
     font-family: "Poppins", sans-serif;
+    letter-spacing: .6px;
 }
 
 `
