@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components"
 
 export const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&display=swap');
 
 :root {
     --black: #09090c;
@@ -25,6 +24,7 @@ body {
     color: ${({theme}) => theme.text};
     font-family: "Poppins", sans-serif;
     letter-spacing: .6px;
+    transition: all 0.5s linear;
 }
 
 `

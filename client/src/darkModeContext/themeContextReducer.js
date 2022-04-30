@@ -1,8 +1,10 @@
 import { themesTypes } from "./themesTypes"
 
-export const INITIAL_STATE = {
+export const initialState = {
     darkMode: false
 }
+
+export const initializer = (initialValue = initialState) => JSON.parse(localStorage.getItem('darkMode')) || initialValue
 
 export const ThemeContextReducer = (state, action) => {
     const { LIGHT, DARK, TOGGLE } = themesTypes

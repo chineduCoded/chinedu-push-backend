@@ -1,27 +1,29 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { darkTheme, lightTheme } from "../styles/theme";
-import { INITIAL_STATE, ThemeContextReducer } from "./themeContextReducer";
+import { initialState, initializer, ThemeContextReducer } from "./themeContextReducer";
 import { themesTypes } from "./themesTypes";
 
-export const ThemeContext = createContext(INITIAL_STATE)
+export const ThemeContext = createContext(initialState)
 
 export const ThemeContextProvider = ({children}) => {
-    const [theme, dispatch] = useReducer(ThemeContextReducer, INITIAL_STATE)
+    const [theme, dispatch] = useReducer(ThemeContextReducer, initialState, initializer)
     const { darkMode } = theme
+    const { TOGGLE } = themesTypes
+ 
 
     useEffect(() => {
-        localStorage.setItem("DarkMode", JSON.stringify(darkMode))
-    }, [darkMode])
+        localStorage.setItem('darkMode', JSON.stringify(theme))
+    }, [theme])
 
-    const themeStyle = darkMode === false ? lightTheme : darkTheme
 
-    const { TOGGLE } = themesTypes
     const toggleTheme = (toggleMode) => {
-        dispatch({
+       dispatch({
             type: TOGGLE,
             payload: toggleMode
         })
     }
+
+    const themeStyle = darkMode === false ? lightTheme : darkTheme
 
     return (
         <ThemeContext.Provider value={{ darkMode, toggleTheme, themeStyle }}>
